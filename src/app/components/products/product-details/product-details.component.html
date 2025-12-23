@@ -1,0 +1,20 @@
+<h2>Product Details</h2>
+
+<div *ngIf="product">
+
+  <img [src]="product.image" width="250">
+
+  <h3>{{product.name}}</h3>
+  <h3>₹{{product.price}}</h3>
+
+  <button (click)="addToCart()">Add to Cart</button>
+
+  <br><br>
+
+  <a routerLink="/">⬅ Back to Products</a>
+
+</div>
+
+<div *ngIf="!product">
+  Product not found
+</div>
