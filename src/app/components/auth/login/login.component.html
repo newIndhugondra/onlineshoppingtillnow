@@ -1,1 +1,10 @@
-<p>login works!</p>
+<div class="container mt-4" style="max-width:400px">
+    <h3>Login</h3>
+  
+    <input class="form-control mb-2" [(ngModel)]="email" placeholder="Email" />
+  
+    <input class="form-control mb-2" [(ngModel)]="password" placeholder="Password" type="password"/>
+  
+    <button class="btn btn-primary" (click)="login()">Login</button>
+  </div>
+  
