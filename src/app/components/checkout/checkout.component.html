@@ -1,0 +1,27 @@
+<div class="container mt-4">
+
+    <h2>Checkout</h2>
+  
+    <div *ngIf="cartItems.length === 0">
+      Cart is empty
+    </div>
+  
+    <div *ngIf="cartItems.length > 0">
+  
+      <div class="card p-3 mb-3" *ngFor="let item of cartItems">
+        <h4>{{item.name}}</h4>
+        <p>Price: ₹{{item.price}}</p>
+        <p>Quantity: {{item.quantity}}</p>
+        <hr>
+      </div>
+  
+      <h3>Total: ₹{{total}}</h3>
+  
+      <button class="btn btn-success" (click)="placeOrder()">
+        Place Order
+      </button>
+  
+    </div>
+  
+  </div>
+  

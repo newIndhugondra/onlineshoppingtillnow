@@ -14,4 +14,11 @@
 
 <h2 *ngIf="cartItems.length > 0">
   Total: ₹{{total}}
+  <button routerLink="/checkout" class="btn btn-primary">
+    Proceed to Checkout
+  </button>
+  <button routerLink="/order-summary" class="btn btn-primary">
+    Proceed to Order Summary
+  </button>
+  
 </h2>
