@@ -1,30 +1,40 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CartService } from '../../services/cart.service';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CheckoutService } from '../../services/checkout.service';
 
 @Component({
   standalone: true,
   selector: 'app-checkout',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './checkout.component.html'
 })
 export class CheckoutComponent {
 
-  cartItems: any[] = [];
-  total = 0;
+  name = "";
+  address = "";
+  phone = "";
+  paymentMethod = "COD";
 
-  constructor(private cartService: CartService, private router: Router) {}
+  constructor(private checkoutService: CheckoutService, private router: Router) {}
 
-  ngOnInit() {
-    this.cartItems = this.cartService.getCartItems();
-    this.total = this.cartService.getTotal();
-  }
+  proceed() {
 
-  placeOrder() {
-    alert("Order placed successfully! 🎉");
-    this.cartService.cartItems = [];
-    this.cartService.cartCount.next(0);
-    this.router.navigate(['/']);
+    if(!this.name || !this.address || !this.phone){
+      alert("Please fill all details");
+      return;
+    }
+
+    this.checkoutService.setCheckoutData({
+      name: this.name,
+      address: this.address,
+      phone: this.phone,
+      paymentMethod: this.paymentMethod
+    });
+
+    this.router.navigate(['/order-summary']);
+    this.router.navigate(['/payment']);
+
   }
 }

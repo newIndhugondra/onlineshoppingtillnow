@@ -28,6 +28,7 @@ export class NavbarComponent {
     // 🔹 Live Cart Count
     this.cartService.cartCount.subscribe(count => {
       this.cartCount = count;
+      this.updateUserState();
     });
 
     // 🔹 Login State
@@ -40,14 +41,24 @@ export class NavbarComponent {
   }
 
   // 🔹 Check Login / Username
+  displayName: string = "";
+
   updateUserState() {
     this.isLoggedIn = this.auth.isLoggedIn();
-    this.username = this.auth.getUser();
+    const user = this.auth.getUser();
+  
+    if (user) {
+      const namePart = user.split('@')[0];      // indhugondra
+      this.displayName = namePart.charAt(0).toUpperCase() + namePart.slice(1);
+    }
   }
+  
 
   // 🔹 Logout
   logout() {
     this.auth.logout();
     this.updateUserState();
   }
+ 
+
 }

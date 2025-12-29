@@ -1,5 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
-  <a class="navbar-brand" routerLink="/">🛒 MyShop</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow px-3 sticky-top">
+  
+  <!-- LEFT SIDE -->
+  <a class="navbar-brand me-3" routerLink="/">🛒 MyShop</a>
 
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
     <span class="navbar-toggler-icon"></span>
@@ -13,11 +15,11 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" routerLink="/login">Login</a>
+        <a class="nav-link" routerLink="/orders">My Orders</a>
       </li>
     </ul>
 
-    <!-- Search Bar -->
+    <!-- SEARCH -->
     <input
       type="text"
       placeholder="Search..."
@@ -25,21 +27,32 @@
       class="form-control w-25 me-3"
     />
 
-    <!-- If Logged In -->
-    <div *ngIf="isLoggedIn; else guest">
-      <span class="text-white me-2">
-        Welcome, <b>{{username}}</b>
+    <!-- PROFILE + GREETING (shows only when logged in) -->
+    <div *ngIf="isLoggedIn" class="d-flex align-items-center me-3">
+
+      <!-- Profile Icon -->
+      <a class="btn btn-outline-light rounded-circle me-2"
+         style="width:40px;height:40px;display:flex;align-items:center;justify-content:center">
+        👤
+      </a>
+
+      <!-- Greeting -->
+      <span class="text-white">
+        Hi, <b>{{displayName}}</b>
       </span>
 
+    </div>
+
+    <!-- LOGIN / LOGOUT -->
+    <div *ngIf="isLoggedIn; else guest">
       <button class="btn btn-danger me-2" (click)="logout()">Logout</button>
     </div>
 
-    <!-- If Not Logged In -->
     <ng-template #guest>
       <a routerLink="/login" class="btn btn-success me-2">Login</a>
     </ng-template>
 
-    <!-- Cart Button -->
+    <!-- CART -->
     <a routerLink="/cart" class="btn btn-warning">
       Cart
       <span class="badge bg-danger ms-1">{{cartCount}}</span>

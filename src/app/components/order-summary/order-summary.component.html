@@ -7,7 +7,7 @@
     </div>
   
     <div *ngIf="cartItems.length > 0">
-  
+       
       <div class="card p-3 mb-3" *ngFor="let item of cartItems">
         <h4>{{item.name}}</h4>
         <p>Price: ₹{{item.price}}</p>
@@ -15,7 +15,15 @@
       </div>
   
       <h3>Total: ₹{{total}}</h3>
-  
+      <h3>Delivery Details</h3>
+
+      <div class="card p-3 mb-3" *ngIf="checkoutDetails">
+        <p><b>Name:</b> {{checkoutDetails.name}}</p>
+        <p><b>Address:</b> {{checkoutDetails.address}}</p>
+        <p><b>Phone:</b> {{checkoutDetails.phone}}</p>
+        <p><b>Payment:</b> {{checkoutDetails.paymentMethod}}</p>
+      </div>
+      
       <button class="btn btn-success" (click)="placeOrder()">
         Place Order
       </button>

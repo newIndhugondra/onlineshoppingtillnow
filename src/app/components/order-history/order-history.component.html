@@ -1,0 +1,35 @@
+<div class="container mt-4">
+
+    <h2>My Orders</h2>
+    <hr>
+  
+    <div *ngIf="orders.length === 0" class="alert alert-warning">
+      No orders placed yet
+    </div>
+  
+    <div *ngFor="let order of orders; let i = index" class="card p-3 mb-3">
+  
+      <h5>Order Date: {{order.date | date:'short'}}</h5>
+  
+      <p><b>Name:</b> {{order.details.name}}</p>
+      <p><b>Address:</b> {{order.details.address}}</p>
+      <p><b>Phone:</b> {{order.details.phone}}</p>
+      <p><b>Payment:</b> {{order.details.paymentMethod}}</p>
+  
+      <h6 class="mt-2">Items:</h6>
+      <ul>
+        <li *ngFor="let i of order.items">
+          {{i.name}} (x{{i.quantity}}) — ₹{{i.price}}
+        </li>
+      </ul>
+  
+      <h4 class="text-success">Total: ₹{{order.total}}</h4>
+  
+      <button class="btn btn-danger mt-2" (click)="cancel(i)">
+        Cancel Order
+      </button>
+  
+    </div>
+  
+  </div>
+  

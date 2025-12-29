@@ -1,27 +1,29 @@
-<div class="container mt-4">
 
-    <h2>Checkout</h2>
-  
-    <div *ngIf="cartItems.length === 0">
-      Cart is empty
-    </div>
-  
-    <div *ngIf="cartItems.length > 0">
-  
-      <div class="card p-3 mb-3" *ngFor="let item of cartItems">
-        <h4>{{item.name}}</h4>
-        <p>Price: ₹{{item.price}}</p>
-        <p>Quantity: {{item.quantity}}</p>
-        <hr>
-      </div>
-  
-      <h3>Total: ₹{{total}}</h3>
-  
-      <button class="btn btn-success" (click)="placeOrder()">
-        Place Order
-      </button>
-  
-    </div>
-  
-  </div>
-  
+<div class="container mt-4 shadow p-4 bg-white rounded" style="max-width:600px">
+
+  <h2>Checkout</h2>
+  <hr>
+
+  <h4>Shipping Address</h4>
+
+  <input class="form-control mb-2" [(ngModel)]="name" placeholder="Full Name">
+
+  <input class="form-control mb-2" [(ngModel)]="address" placeholder="Address">
+
+  <input class="form-control mb-2" [(ngModel)]="phone" placeholder="Phone Number">
+
+  <hr>
+
+  <h4>Payment Method</h4>
+
+  <select class="form-control mb-3" [(ngModel)]="paymentMethod">
+    <option value="COD">Cash On Delivery</option>
+    <option value="CARD">Credit / Debit Card</option>
+    <option value="UPI">UPI</option>
+  </select>
+
+  <button class="btn btn-primary" (click)="proceed()">
+    Continue to Order Summary
+  </button>
+
+</div>

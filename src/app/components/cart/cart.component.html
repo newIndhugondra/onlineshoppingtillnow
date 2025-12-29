@@ -1,24 +1,36 @@
-<h2>Your Cart</h2>
+<div class="container mt-4">
 
-<div *ngIf="cartItems.length === 0">
-  Cart is empty
-</div>
+  <h2>🛒 Your Cart</h2>
 
-<div *ngFor="let item of cartItems" style="border:1px solid gray; padding:10px; margin:10px">
-  <h3>{{item.name}}</h3>
-  <p>Price: ₹{{item.price}}</p>
-  <p>Quantity: {{item.quantity}}</p>
+  <div *ngIf="cartItems.length === 0" class="alert alert-warning mt-3">
+    Cart is empty
+  </div>
 
-  <button (click)="remove(item.id)">Remove</button>
-</div>
+  <div class="card p-3 mb-3" *ngFor="let item of cartItems">
+    <div class="d-flex justify-content-between align-items-center">
 
-<h2 *ngIf="cartItems.length > 0">
-  Total: ₹{{total}}
-  <button routerLink="/checkout" class="btn btn-primary">
+      <div>
+        <h4>{{item.name}}</h4>
+        <p>₹{{item.price}}</p>
+        <p>Quantity: {{item.quantity}}</p>
+      </div>
+
+      <button class="btn btn-danger" (click)="remove(item.id)">
+        Remove
+      </button>
+
+    </div>
+  </div>
+
+  <h3 *ngIf="cartItems.length > 0">
+    Total: <span class="text-success">₹{{total}}</span>
+  </h3>
+
+  <button
+    *ngIf="cartItems.length > 0"
+    routerLink="/checkout"
+    class="btn btn-primary mt-3">
     Proceed to Checkout
   </button>
-  <button routerLink="/order-summary" class="btn btn-primary">
-    Proceed to Order Summary
-  </button>
-  
-</h2>
+
+</div>

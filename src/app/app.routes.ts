@@ -4,12 +4,16 @@ import { ProductDetailsComponent } from './components/products/product-details/p
 import { CartComponent } from './components/cart/cart.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { AuthGuard } from './auth.guard';
+
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
 import { OrderSuccessComponent } from './components/order-success/order-success.component';
+import { PaymentComponent } from './components/payment/payment.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
 
 export const routes: Routes = [
-  { path: '', component: ProductListComponent },
+  { path: '', component: ProductListComponent ,canActivate: [AuthGuard]},
   { path: 'product/:id', component: ProductDetailsComponent },
   { path: 'cart', component: CartComponent },
   { path: 'login', component: LoginComponent },
@@ -17,6 +21,10 @@ export const routes: Routes = [
   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
   { path: 'order-summary', component: OrderSummaryComponent },
   { path: 'order-success', component: OrderSuccessComponent },
+  { path: 'payment', component: PaymentComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'orders', component: OrderHistoryComponent },
   // fallback for wrong URLs
+
   { path: '**', redirectTo: '' }
 ];

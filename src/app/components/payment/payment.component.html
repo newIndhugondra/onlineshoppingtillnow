@@ -1,0 +1,37 @@
+<div class="container mt-4 shadow p-4 bg-white rounded" style="max-width:600px">
+
+
+    <h2>Payment</h2>
+    <hr>
+  
+    <h4>Select Payment Method</h4>
+  
+    <select class="form-control mb-3" [(ngModel)]="paymentMethod">
+      <option value="CARD">Credit / Debit Card</option>
+      <option value="UPI">UPI</option>
+      <option value="COD">Cash On Delivery</option>
+    </select>
+  
+    <!-- CARD FORM -->
+    <div *ngIf="paymentMethod === 'CARD'" class="card p-3 mb-3">
+      <h5>Card Payment</h5>
+      <input class="form-control mb-2" [(ngModel)]="cardNumber" placeholder="Card Number">
+    </div>
+  
+    <!-- UPI FORM -->
+    <div *ngIf="paymentMethod === 'UPI'" class="card p-3 mb-3">
+      <h5>UPI Payment</h5>
+      <input class="form-control mb-2" [(ngModel)]="upiId" placeholder="example@upi">
+    </div>
+  
+    <!-- COD -->
+    <div *ngIf="paymentMethod === 'COD'" class="alert alert-info">
+      Pay cash on delivery
+    </div>
+  
+    <button class="btn btn-success" (click)="pay()">
+      Pay & Continue
+    </button>
+  
+  </div>
+  
